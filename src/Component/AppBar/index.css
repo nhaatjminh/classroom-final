@@ -1,0 +1,44 @@
+.addClassButton {   
+    width: 25%;
+    margin: 0px 20px;
+} 
+
+.addClassInput {
+    margin: 10px;
+}
+
+.notification-container {
+    margin: -15px 25px 10px 10px;
+    margin-left: 68%;
+    padding: 10px;
+    width: 30%;
+    border: 1px solid rgb(179, 179, 179);
+    background-color: rgb(251, 252, 241) !important;
+    z-index: 10;
+    height: 220px;
+    overflow: scroll !important;
+    position: absolute;
+}
+
+.noti {
+    margin: 5px 0px;
+    padding: 5px;
+    background-color: rgb(245, 255, 251);
+    border-radius: 5px;
+    border-top: 1px solid rgb(114, 114, 231);
+    border-bottom: 1px solid rgb(114, 114, 231);
+}
+
+.noti:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+.noti .name {
+    size: 15px;
+    font-weight: 600;
+}
+
+.noti .time {
+    size: 8px;
+    color: rgb(114, 169, 231);
+}
