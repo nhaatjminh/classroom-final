@@ -141,7 +141,11 @@ const Login = ({onLoginSuccess, setTrigger, reloadTrigger}) => {
                     localStorage.setItem("token", result.token);
                     localStorage.setItem("userId", result.user.id);
                     localStorage.setItem("mail", result.user.email);
-                    console.log(localStorage.getItem("mail"));                   
+                    console.log(localStorage.getItem("mail"));
+                    setIsLogin(true);
+                    setIsAdmin(true);
+                    
+                    onLoginSuccess();                   
                 }
                 else {
                     localStorage.setItem("token", result.token);
