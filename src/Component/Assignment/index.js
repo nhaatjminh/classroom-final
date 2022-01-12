@@ -42,9 +42,8 @@ const Assignment = ({dataAssignment, role, getTotal}) => {
     }, []);
 
     const detailURL = "/classes/detail/" + params.id + "/assignment/" + dataAssignment.id;
-    return( 
-    <div>
-    <Card className="assignment mx-auto">
+    return(
+    <Card key={dataAssignment.id} className="assignment mx-auto">
         <Card.Header as= "h2" className="head-center"> {topic} </Card.Header>
         <Card.Body>            
             {/* <Card.Title> Abc </Card.Title> */}
@@ -63,7 +62,6 @@ const Assignment = ({dataAssignment, role, getTotal}) => {
         </Card.Footer>
 
     </Card>
-    </div>
     )
 };
 

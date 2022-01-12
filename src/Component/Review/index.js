@@ -13,8 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import PersonIcon from '@mui/icons-material/Person';
 import TextField from '@mui/material/TextField';
-import './index.css'
-import { param } from "jquery";
+import './index.css';
 
 const DetailReview = () => {
     const params = useParams();
@@ -210,8 +209,12 @@ const DetailReview = () => {
           "role": role
         });
 
+        let id = 0;
+        if (listCmt.length > 0) {
+            id = listCmt.at(-1).id + 1
+        }
         var newCmt = {
-            id: listCmt.at(-1).id + 1,
+            id: id,
             name: name,
             content: cmtContent
         }
@@ -251,7 +254,7 @@ const DetailReview = () => {
           redirect: 'follow'
         };
         
-        fetch(process.env.REACT_APP_API_URL + "reviews" + params.idClass + "/markFinal", requestOptions)
+        fetch(process.env.REACT_APP_API_URL + "reviews/markFinal/" + params.idClass, requestOptions)
           .then(response => response.json())
           .then(result => {
             alert("Mark final done!")

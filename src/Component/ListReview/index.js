@@ -54,7 +54,6 @@ const ListReview = () => {
         .then(result => {
             if (result) {
                 setListReview(result);
-                console.log(result);
             }
         })
         .catch(error => {

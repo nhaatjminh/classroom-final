@@ -206,7 +206,7 @@ const DetailClass = () => {
     const renderGradeStructure = () => {
         let gradestructure = [];
         for (let index = 0; index < assignment.length; index++) {
-            gradestructure.push(<Card.Text> {assignment[index].topic} : {assignment[index].grade}đ </Card.Text>)
+            gradestructure.push(<Card.Text key={assignment[index].id}> {assignment[index].topic} : {assignment[index].grade}đ </Card.Text>)
         }
         return gradestructure;
     }

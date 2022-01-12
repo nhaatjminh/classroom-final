@@ -141,11 +141,11 @@ const Login = ({onLoginSuccess, setTrigger, reloadTrigger}) => {
                     localStorage.setItem("token", result.token);
                     localStorage.setItem("userId", result.user.id);
                     localStorage.setItem("mail", result.user.email);
-                    console.log(localStorage.getItem("mail"));
+                    console.log(localStorage.getItem("mail")); 
                     setIsLogin(true);
                     setIsAdmin(true);
                     
-                    onLoginSuccess();                   
+                    onLoginSuccess();                  
                 }
                 else {
                     localStorage.setItem("token", result.token);
@@ -169,7 +169,7 @@ const Login = ({onLoginSuccess, setTrigger, reloadTrigger}) => {
         setIsAdmin(false);
         localStorage.removeItem("isAdmin");
         window.location.pathname ='/'; 
-        window.location.reload();
+        // window.location.reload();
         localStorage.clear();
     }
     const PostData = async (tokenLink, tokenAccount) => {
@@ -202,10 +202,10 @@ const Login = ({onLoginSuccess, setTrigger, reloadTrigger}) => {
     }
     AcceptClass();
     if (isAdmin) {
+        console.log("ok");
         return (
-        <div>
-            {isAdmin ? <AdminPage  onLogoutSuccess={onLogoutSuccess}/> : ""}
-        </div>)
+            <AdminPage  onLogoutSuccess={onLogoutSuccess}/>
+        )
     }
     else {
         return (

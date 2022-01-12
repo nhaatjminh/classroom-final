@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from "react";
+import React, {useState} from "react";
 import { useTable, useGlobalFilter, useAsyncDebounce  } from "react-table";
 import "./index.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -42,7 +42,7 @@ function Table({ columns, data, uploadData }) {
         headers: myHeaders,
         redirect: 'follow'
     };
-    fetch(process.env.REACT_APP_API_URL + "accounts/detail" + id , requestOptions)
+    fetch(process.env.REACT_APP_API_URL + "accounts/detail/" + id , requestOptions)
     .then(response => {
       if (response.ok) {
         return response.json();

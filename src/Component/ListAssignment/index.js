@@ -51,7 +51,8 @@ const ListAssignment = () => {
             "topic": topic,
             "grade": grade,
             "description": description,
-            "deadline": minus + ":" + hour + " " + day + "-" + month + "-" + year
+            "deadline": minus + ":" + hour + " " + day + "-" + month + "-" + year,
+            "rank": arrayAssignment.length + 1
         }
 
         let raw = JSON.stringify(newAssign);
@@ -65,11 +66,13 @@ const ListAssignment = () => {
 
         fetch(process.env.REACT_APP_API_URL + "assignment/" + params.id, requestOptions)
         .then(response =>  {
-            return response.text();
+            return response.json();
         })
         .then(result => {
             alert("Assignment Created!");
             var newArrayAssignment = arrayAssignment.slice();
+            newAssign.id = result.insertId;
+            console.log(newAssign);
             newArrayAssignment.push(newAssign);
             setArrayAssignment(newArrayAssignment);
             onHandleModalClose();
@@ -110,6 +113,57 @@ const ListAssignment = () => {
             )}
         )
         return list;
+    }
+
+    const getListAssignmentForTeacher = () => {
+        return(
+            <DragDropContext
+                onDragEnd={(param) => {
+                    const srcI = param.source.index;
+                    const desI = param.destination?.index;
+                    tmpList.splice(desI, 0, tmpList.splice(srcI, 1)[0]);
+                    setArrayAssignment(tmpList);
+                    UpdateRank(tmpList);
+                }}
+            >
+                <Droppable droppableId="droppable-1">
+                    {(provided, _) => (
+                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                        {tmpList.map((item, i) => (
+                        <Draggable
+                            key={item.id}
+                            draggableId={"draggable-" + item.id}
+                            index={i}
+                        >
+                            {(provided, snapshot) => (
+                            <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                
+                                style={{
+                                ...provided.draggableProps.style,
+                                }}
+                            >
+                                
+                                <div align='center' {...provided.dragHandleProps}>
+                                <DragIndicatorIcon  />
+                                </div>
+                                <Assignment
+                                    key={item.id}  
+                                    onDeleteSuccess={() => onDeleteSuccess(item.id)} 
+                                    onUpdateSuccess={() => onUpdateSuccess(item.id)} 
+                                    dataAssignment={item}
+                                    role={role}/>
+                            </div>
+                            )}
+                        </Draggable>
+                        ))}
+                        {provided.placeholder}
+                    </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
+        )
     }
 
     const onDeleteSuccess = (idAssign) => {
@@ -220,58 +274,13 @@ const ListAssignment = () => {
             {role !== 'teacher' ? 
             <div className="list-assignment">
                 <h5>Total Grade: {totalGrade}</h5>
-            {getListAssignment()}
+                {getListAssignment()}
             </div> 
             
                 :
             
             <div>
-            <DragDropContext
-                onDragEnd={(param) => {
-                    const srcI = param.source.index;
-                    const desI = param.destination?.index;
-                    tmpList.splice(desI, 0, tmpList.splice(srcI, 1)[0]);
-                    setArrayAssignment(tmpList);
-                    UpdateRank(tmpList);
-                }}
-            >
-                <Droppable droppableId="droppable-1">
-                    {(provided, _) => (
-                    <div ref={provided.innerRef} {...provided.droppableProps}>
-                        {tmpList.map((item, i) => (
-                        <Draggable
-                            key={item.id}
-                            draggableId={"draggable-" + item.id}
-                            index={i}
-                        >
-                            {(provided, snapshot) => (
-                            <div
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                
-                                style={{
-                                ...provided.draggableProps.style,
-                                }}
-                            >
-                                
-                                <div align='center' {...provided.dragHandleProps}>
-                                <DragIndicatorIcon  />
-                                </div>
-                                <Assignment
-                                    key={item.id}  
-                                    onDeleteSuccess={() => onDeleteSuccess(item.id)} 
-                                    onUpdateSuccess={() => onUpdateSuccess(item.id)} 
-                                    dataAssignment={item}
-                                    role={role}/>
-                            </div>
-                            )}
-                        </Draggable>
-                        ))}
-                        {provided.placeholder}
-                    </div>
-                    )}
-                </Droppable>
-            </DragDropContext>
+                {getListAssignmentForTeacher()}
             </div>
             }
             

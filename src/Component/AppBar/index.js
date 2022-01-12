@@ -35,9 +35,8 @@ export default function TopNavBar({ brandName, onLogoutSuccess, setTrigger }) {
   let location = useLocation();
 
   const setNoti = () => {
-
     if (notiData.length > 0) {
-      return notiData.map((ele) => <Notification data={ele}/>)
+      return notiData.map((ele) => <Notification key={ele.id} data={ele}/>)
     }
   }
 
