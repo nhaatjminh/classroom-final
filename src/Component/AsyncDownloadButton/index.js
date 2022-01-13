@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { CSVLink } from "react-csv";
 
-const AsyncDownloadButton = (assign) => {
+const AsyncDownloadButton = ({assignId}) => {
     const params = useParams();
 
     const [dataForDownload, setDataForDownload] = useState([]);
@@ -31,10 +31,11 @@ const AsyncDownloadButton = (assign) => {
             redirect: 'follow'
         };
 
-        fetch(process.env.REACT_APP_API_URL + "grades/" + params.id + "/" + assign.assignId, requestOptions)
+        fetch(process.env.REACT_APP_API_URL + "grades/" + params.id + "/" + assignId, requestOptions)
         .then(response => response.json())
         .then(result => {
             if (result) {
+                console.log(result)
                 setDataForDownload(result);
                 setDownloadReady(true);
             }

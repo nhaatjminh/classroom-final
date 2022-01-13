@@ -28,7 +28,6 @@ export default function TopNavBar({ brandName, onLogoutSuccess, setTrigger }) {
   const [notiData, setNotiData] = React.useState([]); 
   const [isHiddenNotification, setIsHiddenNotification] = React.useState(true);
   const [url] = React.useState("/profile/" + localStorage.getItem("userId"));
-  const [active] = React.useState(localStorage.getItem("mail"));
   const [enterMailStep, setEnterMailStep] = React.useState(true)
 
 	let navigate = useNavigate();
@@ -66,7 +65,7 @@ export default function TopNavBar({ brandName, onLogoutSuccess, setTrigger }) {
     .then(response => response.json())
     .then(result => {
       if (result) {
-        console.log(result);
+
         setServerCode(result);
         setEnterMailStep(false);
         setCode("");
@@ -233,7 +232,7 @@ export default function TopNavBar({ brandName, onLogoutSuccess, setTrigger }) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {brandName}
           </Typography>
-          {(active != 'null')? <div></div> : <Button className="btn btn-success" style={{ backgroundColor: 'blue', color: 'white'}} onClick={onHandleActiveModalShow}> Active Mail </Button> }
+          {(localStorage.getItem("mail") != null && localStorage.getItem("mail") != "")? <div></div> : <Button className="btn btn-success" style={{ backgroundColor: 'blue', color: 'white'}} onClick={onHandleActiveModalShow}> Active Mail </Button> }
           {!isAdmin ? <div>  
             <IconButton
                 size="large"

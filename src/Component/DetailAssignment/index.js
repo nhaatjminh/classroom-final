@@ -408,7 +408,7 @@ const DetailAssignment = () => {
                         <Button size="small" variant="contained" color="success" disabled={finished == 1} onClick={onHandleModalShow}>Update</Button>
                         <Button size="small" variant="contained" color="success" disabled={finished == 1} onClick={deleteAssignment}>Delete</Button>
                         <Button size="small" variant="contained" color="success">
-                            <AsyncDownloadButton />
+                            <AsyncDownloadButton assignId = {params.idAss}/>
                         </Button>
                         <Button size="small" variant="contained" color="success" disabled={finished == 1} onClick={onHandleUploadModalShow}>Upload grades</Button>
                         <Button size="small" variant="contained" color="success" sx={{ml:1}} href="/Template/grades_assignment_template.xlsx">Donwload Template</Button>

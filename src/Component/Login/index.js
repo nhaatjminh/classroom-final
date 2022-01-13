@@ -63,8 +63,14 @@ const Login = ({onLoginSuccess, setTrigger, reloadTrigger}) => {
                 localStorage.setItem("token", result.token);
                 localStorage.setItem("userId", result.user.id);
                 localStorage.setItem("studentID", result.user.studentID);
-                localStorage.setItem("mail", result.user.email);
+                if (!result.user.id || result.user.id != "") {
+                    localStorage.setItem("", result.user.email);
+                } else {
+                    localStorage.setItem("mail", result.user.email);
+                }
+
                 setIsLogin(true);
+
                 onLoginSuccess();
             })
             .catch(error => {
@@ -98,8 +104,14 @@ const Login = ({onLoginSuccess, setTrigger, reloadTrigger}) => {
                 localStorage.setItem("token", result.token);
                 localStorage.setItem("userId", result.user.id);
                 localStorage.setItem("studentID", result.user.studentID);
-                localStorage.setItem("mail", result.user.email);
+                if (!result.user.id || result.user.id != "") {
+                    localStorage.setItem("", result.user.email);
+                } else {
+                    localStorage.setItem("mail", result.user.email);
+                }
+
                 setIsLogin(true);
+
                 onLoginSuccess();
             })
             .catch(error => {
@@ -140,8 +152,12 @@ const Login = ({onLoginSuccess, setTrigger, reloadTrigger}) => {
                     localStorage.setItem("isAdmin", true);
                     localStorage.setItem("token", result.token);
                     localStorage.setItem("userId", result.user.id);
-                    localStorage.setItem("mail", result.user.email);
-                    console.log(localStorage.getItem("mail")); 
+                    if (!result.user.id || result.user.id != "") {
+                        localStorage.setItem("", result.user.email);
+                    } else {
+                        localStorage.setItem("mail", result.user.email);
+                    }
+
                     setIsLogin(true);
                     setIsAdmin(true);
                     
@@ -151,7 +167,12 @@ const Login = ({onLoginSuccess, setTrigger, reloadTrigger}) => {
                     localStorage.setItem("token", result.token);
                     localStorage.setItem("userId", result.user.id);
                     localStorage.setItem("studentID", result.user.studentID);
-                    localStorage.setItem("mail", result.user.email);
+                    if (!result.user.id || result.user.id != "") {
+                        localStorage.setItem("", result.user.email);
+                    } else {
+                        localStorage.setItem("mail", result.user.email);
+                    }
+
                     setIsLogin(true);
                     
                     onLoginSuccess();
